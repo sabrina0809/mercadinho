@@ -1,35 +1,100 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo de Produtos</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mercado Fácil - Login</title>
+  <link rel="stylesheet" href="../mercadinho/css/style.css" />
 </head>
 <body>
 
-  <h1>Bem-vindo ao Catálogo de Produtos</h1>
+  <!-- Tela de Login -->
+  <section id="tela-login" class="tela-login">
+    <h2>Login</h2>
+    <p class="texto-topo">
+      Uma nova experiência de compras espera por você! Visite nosso mercado e surpreenda-se com a qualidade e o atendimento!
+    </p>
+    <form id="form-login">
+      <label>
+        Usuário:<br />
+        <input type="text" id="usuario" required />
+      </label>
+      <label>
+        Senha:<br />
+        <input type="password" id="senha" required />
+      </label>
+      <button type="submit">Entrar</button>
+    </form>
+    <div id="erro-login" class="erro-login"></div>
+  </section>
 
-  <button class="logout" onclick="logout()">Sair</button>
+  <!-- Conteúdo principal escondido inicialmente -->
+  <div id="conteudo-principal" style="display:none;">
+    <header class="topo">
+      <div class="logo">Mercado Fácil</div>
+      <nav class="menu">
+        <ul class="menu-itens">
+          <li><button data-categoria="Todos">Início</button></li>
+          <li><button data-categoria="men's clothing">Roupas Masculinas</button></li>
+          <li><button data-categoria="women's clothing">Roupas Femininas</button></li>
+          <li><button data-categoria="jewelery">Joias</button></li>
+          <li><button data-categoria="electronics">Eletrônicos</button></li>
+        </ul>
+      </nav>
+      <div class="carrinho-header">
+        <button id="botao-carrinho">Carrinho (<span id="quantidade-carrinho">0</span>)</button>
+        <button id="botao-logout" title="Sair" style="margin-left:10px; background:#e74c3c;">Logout</button>
+      </div>
+    </header>
 
-  <div class="catalog">
-    <div class="product">
-      <img src="https://via.placeholder.com/100" alt="Produto 1">
-      <h3>Produto 1</h3>
-      <p>R$ 50,00</p>
-    </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/100" alt="Produto 2">
-      <h3>Produto 2</h3>
-      <p>R$ 80,00</p>
-    </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/100" alt="Produto 3">
-      <h3>Produto 3</h3>
-      <p>R$ 120,00</p>
+    <main>
+      <section id="catalogo" class="catalogo"></section>
+
+      <!-- Carrinho lateral -->
+      <aside class="carrinho" id="carrinho">
+        <h2>Carrinho</h2>
+        <ul id="itens-carrinho"></ul>
+        <div id="total-carrinho">Total: R$ 0,00</div>
+        <button id="fechar-carrinho">Fechar</button>
+        <button id="finalizar-compra" class="finalizar-compra-btn">Finalizar Compra</button>
+      </aside>
+    </main>
+
+    <!-- Modal de Checkout -->
+    <div id="modal-checkout" class="modal-hidden">
+      <div class="modal-content">
+        <h2>Finalizar Compra</h2>
+        <div id="resumo-pedido"></div>
+
+        <form id="form-checkout">
+          <h3>Informações para Entrega</h3>
+          <label>
+            Nome Completo:<br />
+            <input type="text" id="nome" required />
+          </label><br /><br />
+
+          <label>
+            Endereço:<br />
+            <input type="text" id="endereco" required />
+          </label><br /><br />
+
+          <label>
+            Telefone:<br />
+            <input type="tel" id="telefone" required pattern="\d{10,15}" placeholder="Apenas números" />
+          </label><br /><br />
+
+          <h3>Método de Pagamento</h3>
+          <label><input type="radio" name="pagamento" value="Cartão de Crédito" required /> Cartão de Crédito</label><br />
+          <label><input type="radio" name="pagamento" value="Boleto Bancário" /> Boleto Bancário</label><br />
+          <label><input type="radio" name="pagamento" value="Pix" /> Pix</label><br /><br />
+
+          <button type="submit">Confirmar Pedido</button>
+          <button type="button" id="cancelar-checkout">Cancelar</button>
+        </form>
+      </div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="../mercadinho/js/script.js"></script>
 </body>
 </html>
